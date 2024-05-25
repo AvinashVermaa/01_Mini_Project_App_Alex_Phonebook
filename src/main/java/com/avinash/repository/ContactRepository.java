@@ -14,6 +14,6 @@ public interface ContactRepository extends JpaRepository<ContactInfo, Integer> {
 
 	@Modifying
 	@Transactional
-	@Query("update ContactInfo set activeStatus =: status where sno=: sno")
-	public void setActiveStatus(Integer sno,String status);
+	@Query("update ContactInfo set activeStatus=:status where sno=:sno")
+	public void setActiveStatus(String status,Integer sno);
 }

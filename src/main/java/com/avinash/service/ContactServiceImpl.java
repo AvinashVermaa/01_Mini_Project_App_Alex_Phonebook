@@ -23,10 +23,12 @@ public class ContactServiceImpl implements ContactService {
 	@Override
 	public String saveContact(ContactInfo contact) {
 		System.out.println(contact);
-		contactRepo.save(contact);
-		if (contact.getSno() != null) {
+		ContactInfo savedContactData = contactRepo.save(contact);
+		if (savedContactData.getSno() != null) {
+			
 			return "Record Updated succesfully";
 		} else {
+			contact.setActiveStatus("Y");
 			return "Record Saved Successfully";
 		}
 	}
@@ -71,7 +73,7 @@ public class ContactServiceImpl implements ContactService {
 
 	@Override
 	public void updateCurrentActiveStatus(Integer sno, String status) {
-		contactRepo.setActiveStatus(sno, status);
+		contactRepo.setActiveStatus(status,sno);
 	}
 
 }
